@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class RaycastTest : MonoBehaviour
 {
+    // private Collider[] _buffer = new Collider[10];
+
     private void Update()
     {
         Ray ray = new Ray(Vector3.zero, Vector3.forward);
@@ -12,6 +14,9 @@ public class RaycastTest : MonoBehaviour
         RayInfo(cameraRay);
 
         Physics.RaycastAll(ray);
+        Collider[] colliders = Physics.OverlapSphere(Vector3.zero, 10);
+
+        // Physics.OverlapSphereNonAlloc(Vector3.zero, 10, _buffer);
     }
 
     private static void RayInfo(Ray ray)
