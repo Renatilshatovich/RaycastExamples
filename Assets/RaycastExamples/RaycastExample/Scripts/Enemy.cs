@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
         _currentHealth -= damege;
 
-        if (_currentHealth < 0)
+        if (_currentHealth <= 0)
         {
             _currentHealth = 0;
             _bodyCollider.enabled = false;

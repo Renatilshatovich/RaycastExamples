@@ -6,7 +6,7 @@ public class Box : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damege)
     {
-        Instantiate(_destroyEffect, transform.position, Quaternion.identity);
+        Instantiate(_destroyEffect, transform.position, Quaternion.identity, null);
         Destroy(gameObject);
     }
 }
