@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Shooter
+public class StandardShooter : IShooter
 {
     private int _damage;
 
-    public Shooter(int damage) => 
+    public StandardShooter(int damage) => 
         _damage = damage;
 
     public void Shoot()

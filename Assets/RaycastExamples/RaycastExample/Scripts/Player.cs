@@ -2,13 +2,10 @@ using UnityEngine;
 
     public class Player : MonoBehaviour
     {
-        private Shooter _shooter;
+        private IShooter _shooter;
 
-        private void Awake()
-        {
-            _shooter = new Shooter(10);
-        }
-        
+        public void SetShooter(IShooter shooter) => _shooter = shooter;
+       
         private void Update()
         {
             if (Input.GetMouseButtonDown(0))
