@@ -11,9 +11,9 @@ public class ExplosionShooter : IShooter
         _radius = radius;
     }
 
-    public void Shoot()
+    public void Shoot(Vector3 origin, Vector3 direction)
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = new Ray(origin, direction);
 
         if (Physics.Raycast(ray, out RaycastHit hit))
         {

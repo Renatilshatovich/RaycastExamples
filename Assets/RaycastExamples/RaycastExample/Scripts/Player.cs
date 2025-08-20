@@ -10,7 +10,8 @@ using UnityEngine;
         {
             if (Input.GetMouseButtonDown(0))
             {
-                _shooter.Shoot();
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                _shooter.Shoot(ray.origin, ray.direction);
             }
         }
     }
