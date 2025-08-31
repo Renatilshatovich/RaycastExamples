@@ -1,21 +1,34 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour
 {
     [SerializeField] private Transform _target;
 
-    private FieldOfViewCondition _fieldOfViewCondition;
+    private List<IVisibilityCondition> _visibilityConditions = new();
 
-    private void Awake() => 
-        _fieldOfViewCondition = new FieldOfViewCondition(transform, 90);
-
+    private void Awake()
+    {
+        _visibilityConditions.Add(new FieldOfViewCondition(transform, 90));
+        _visibilityConditions.Add(new DistanceCondition(transform, 4));
+    }
     private void Update()
     {
-        if (_fieldOfViewCondition.IsCompleteFor(_target))
-            _target.transform.localScale = new Vector3(2, 2, 2);
-        else
-            _target.transform.localScale = new Vector3(1, 1, 1);
+        // if (_fieldOfViewCondition.IsCompleteFor(_target))
+        //     _target.transform.localScale = new Vector3(2, 2, 2);
+        // else
+        //     _target.transform.localScale = new Vector3(1, 1, 1);
+
+        foreach (IVisibilityCondition condition in _visibilityConditions)
+        {
+            if(condition.IsCompleteFor(_target)  ==  false )
+            {
+                _target.transform.localScale = new Vector3(1, 1, 1);
+                return;
+            }
+        }
+        _target.transform.localScale = new Vector3(2, 2, 2);
     }
 
     private void OnDrawGizmos()

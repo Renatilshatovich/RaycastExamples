@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FieldOfViewCondition : MonoBehaviour
+public class FieldOfViewCondition : IVisibilityCondition
 {
     private Transform _sourceObject;
 
